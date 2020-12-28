@@ -18,7 +18,7 @@ function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Contacts" component={HomeScreen} />
           <Stack.Screen name="Details" component={DetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>

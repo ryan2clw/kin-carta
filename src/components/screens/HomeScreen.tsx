@@ -13,36 +13,12 @@ import { useDispatch } from 'react-redux';
 import { action } from 'typesafe-actions';
 import { actionTypes } from '../../store/ActionTypes';
 import { useSelector } from '../../helpers/globals';
+import ContactRow from '../ContactRow';
 
 interface IHome {
     navigation: any
 }
-const DATA = [
-    {
-      title: "Main dishes",
-      data: ["Pizza", "Burger", "Risotto"]
-    },
-    {
-      title: "Sides",
-      data: ["French Fries", "Onion Rings", "Fried Shrimps"]
-    },
-    {
-      title: "Drinks",
-      data: ["Water", "Coke", "Beer"]
-    },
-    {
-      title: "Desserts",
-      data: ["Cheese Cake", "Ice Cream"]
-    }
-  ];
 
-
-// @ts-ignore
-  const Item = ({ title }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -83,14 +59,14 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {
+            {/* {
                 console.log("RENDER!", contactData)   
-            }
+            } */}
         <SectionList
           sections={ contactData ? contactData : [] }
           keyExtractor={( item ) => item.id }
           renderItem={({ item }) => {
-            return <Item title={item.name} />}}
+            return <ContactRow title={item.name} navigation={navigation} />}}
           renderSectionHeader={({ section: { title } }) => (
             <Text style={styles.header}>{title}</Text>
           )}
