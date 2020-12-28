@@ -9,6 +9,9 @@ import {
   } from "react-native";
   import Constants from "expo-constants";
 import getContacts from '../../webservices/ContactService';
+import { useDispatch } from 'react-redux';
+import { action } from 'typesafe-actions';
+import { actionTypes } from '../../store/ActionTypes';
 
 interface IHome {
     navigation: any
@@ -61,9 +64,11 @@ const styles = StyleSheet.create({
 
 const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
 
+    const dispatch = useDispatch();
+
     useLayoutEffect(() => {
         getContacts().then(contacts=>{
-            console.log("API data", contacts);
+            dispatch(action(actionTypes.CONTACT_DATA, contacts));
         }, (reason)=>{
             console.log("API rejection", reason);
         })
