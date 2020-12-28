@@ -23,7 +23,7 @@ interface IContact {
     }
 }
 
-export interface IGlobalReducer {
+export interface IContactReducer {
   contacts: IContact[];
 }
 
@@ -31,26 +31,22 @@ const initialState = {
     contacts: []
 }
 
-export function GlobalReducer(state = initialState, action: { type: any; payload: boolean; }) {
+export function ContactReducer(state = initialState, action: { type: any; payload: any; }) {
   switch (action.type) {
     case actionTypes.CONTACT_DATA:
-        console.log("MESSAGE RECEIVED!", action.payload);
-        /* 
-        We need data like this:
-        const DATA = [
+        const contactData = [
             {
-                title: "Main dishes",
-                data: ["Pizza", "Burger", "Risotto"]
+                title: "FAVORITE CONTACTS",
+                data : action.payload.filter((element: IContact) => element.isFavorite)
             },
-                        {
-                title: "Main dishes",
-                data: ["Pizza", "Burger", "Risotto"]
-            },
+            {
+                title: "OTHER CONTACTS",
+                data : action.payload.filter((element: IContact) => !(element.isFavorite))
+            }
         ]
-        */
       return {
         ...state,
-        contacts: action.payload
+        contacts: contactData
       }
     default:
       return state;

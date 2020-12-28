@@ -12,6 +12,7 @@ import getContacts from '../../webservices/ContactService';
 import { useDispatch } from 'react-redux';
 import { action } from 'typesafe-actions';
 import { actionTypes } from '../../store/ActionTypes';
+import { useSelector } from '../../helpers/globals';
 
 interface IHome {
     navigation: any
@@ -66,12 +67,15 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
+    // @ts-ignore
+    const contactData = useSelector(store => store.ContactsPage).contacts;
+
     useLayoutEffect(() => {
         getContacts().then(contacts=>{
             dispatch(action(actionTypes.CONTACT_DATA, contacts));
         }, (reason)=>{
             console.log("API rejection", reason);
-        })
+        });
         return () => {
             // cleanup
         };
@@ -79,10 +83,14 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            {
+                console.log("RENDER!", contactData)   
+            }
         <SectionList
-          sections={DATA}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <Item title={item} />}
+          sections={ contactData ? contactData : [] }
+          keyExtractor={( item ) => item.id }
+          renderItem={({ item }) => {
+            return <Item title={item.name} />}}
           renderSectionHeader={({ section: { title } }) => (
             <Text style={styles.header}>{title}</Text>
           )}

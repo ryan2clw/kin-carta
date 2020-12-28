@@ -21,10 +21,8 @@ function getContacts() {
     return fetch(apiUrls.CONTACT)
         .then(handleResponse)
         .then(data => {
-            console.log("data", data);
             return data;
         }, error => {
-            console.log("error", error);
             return error;
         });
 }

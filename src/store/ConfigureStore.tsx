@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers, Dispatch, Action, AnyAction } from 'redux';
 import thunk from 'redux-thunk';
-import { GlobalReducer } from './GlobalReducer';
+import { ContactReducer } from './ContactReducer';
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {
     dispatch: Dispatch<A>,
@@ -8,7 +8,7 @@ export interface IConnectedReduxProps<A extends Action = AnyAction> {
 }
 
 const reducers = {
-    contacts: GlobalReducer
+    ContactsPage: ContactReducer
 };
 const rootReducer = combineReducers({
     ...reducers,
@@ -21,7 +21,6 @@ const configureStore = () => {
     ];
     if (process.env.NODE_ENV === `development`) {
         const { logger } = require(`redux-logger`);
-        console.log("logger", logger);
         middleware.push(logger);
       }
 
