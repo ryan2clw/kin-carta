@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-
 export interface IDetailRow {
     primaryKey: string,
     val: string,

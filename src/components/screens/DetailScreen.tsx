@@ -6,7 +6,6 @@ import { deviceWidth } from '../../helpers/globals';
 import DetailRow from '../DetailRow';
 import Separator from '../Separator';
 
-
 interface IDetailScreen {
     
     route: any

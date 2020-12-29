@@ -45,8 +45,8 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
     useLayoutEffect(() => {
         getContacts().then(contacts=>{
             dispatch(action(actionTypes.CONTACT_DATA, contacts));
-        }, (reason)=>{
-            console.log("API rejection", reason);
+        }, ()=>{
+            // MARK TO DO:  ALERT USER IF API IS DOWN
         });
         return () => {
             // cleanup
