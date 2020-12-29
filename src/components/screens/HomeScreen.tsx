@@ -22,20 +22,14 @@ interface IHome {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: Constants.statusBarHeight,
       marginHorizontal: 16
     },
-    item: {
-      backgroundColor: "#f9c2ff",
-      padding: 20,
-      marginVertical: 8
-    },
     header: {
-      fontSize: 32,
-      backgroundColor: "#fff"
-    },
-    title: {
-      fontSize: 24
+      fontSize: 15,
+      fontWeight: "700",
+      backgroundColor: "#f4f4f4",
+      marginVertical: 9,
+      color: "#777777"
     }
   });
 
@@ -66,7 +60,12 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
           sections={ contactData ? contactData : [] }
           keyExtractor={( item ) => item.id }
           renderItem={({ item }) => {
-            return <ContactRow title={item.name} navigation={navigation} />}}
+            return <ContactRow 
+                    name={item.name} 
+                    navigation={navigation}  
+                    companyName={item.companyName}
+                    isFavorite={item.isFavorite}
+                    />}}
           renderSectionHeader={({ section: { title } }) => (
             <Text style={styles.header}>{title}</Text>
           )}
