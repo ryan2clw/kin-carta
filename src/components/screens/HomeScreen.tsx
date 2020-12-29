@@ -67,7 +67,8 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
                         navigation={navigation}  
                         companyName={item.companyName}
                         isFavorite={item.isFavorite}
-                        pic={item.largeImageURL}
+                        pic={item.smallImageURL}
+                        largePic={item.largeImageURL}
                         phone={item.phone}
                         emailAddress={item.emailAddress}
                         detailId={item.id}

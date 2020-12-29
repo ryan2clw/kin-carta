@@ -22,6 +22,7 @@ interface IContactRow {
     navigation: any,
     isFavorite: boolean,
     pic: string,
+    largePic: string,
     phone: IPhone, // iPhone lol, not the apple product but the interface
     emailAddress: string,
     detailId: string, 
@@ -30,7 +31,7 @@ interface IContactRow {
     birthdate: string
 }
 
-const ContactRow: FunctionComponent<IContactRow> = ({ name, navigation, companyName, isFavorite, pic, phone, emailAddress, detailId, addressOne, addressTwo, birthdate }) => {
+const ContactRow: FunctionComponent<IContactRow> = ({ name, navigation, companyName, isFavorite, pic, largePic, phone, emailAddress, detailId, addressOne, addressTwo, birthdate }) => {
     
 
 
@@ -75,11 +76,12 @@ const ContactRow: FunctionComponent<IContactRow> = ({ name, navigation, companyN
             val:  emailAddress
             }
             dataArray.push(emailObj);
-            navigation.navigate("Details", { name, isFavorite, pic, companyName, phone, emailAddress, detailId, dataArray });
+            navigation.navigate("Details", { name, isFavorite, largePic, companyName, phone, emailAddress, detailId, dataArray });
         }}>
         <View style={{ width: 60, height: 60, backgroundColor: '#e6e6e6', alignItems: "center", justifyContent:"center" }} >
             {
-             pic ? 
+                // RAN OUTTA TIME SO JUST HARDCODED THIS BAD RESPONSE
+             name != "Scooby Doo" ? 
              <Image 
                 source={{
                     uri: pic

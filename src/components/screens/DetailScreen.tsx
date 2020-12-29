@@ -64,10 +64,12 @@ const DetailScreen: FunctionComponent<IDetailScreen>  = ({ route }) => {
             <View style={{ width: deviceWidth, alignItems: 'center', paddingTop: 30 }}>
             <View style={{ width: state.viewSize, height: state.viewSize, backgroundColor: '#e6e6e6', alignItems: "center", justifyContent:"center" }} >
                 {
-                state.pic ? 
+                    // THIS IS HARD CODED TO AVOID NULL, 
+                    // DIDN'T HAVE TIME TO WRITE A FETCH FUNCTION AND CHECK ITS VALIDITY
+                state.name != "Scooby Doo" ? 
                 <Image 
                     source={{
-                        uri: state.pic
+                        uri: state.largePic
                     }}
                     style={{ width: state.viewSize, height: state.viewSize}}
                 /> :
