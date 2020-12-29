@@ -62,7 +62,6 @@ const DetailScreen: FunctionComponent<IDetailScreen>  = ({ route }) => {
 
     return (     
         <View style={styles.container}>
-            {console.log("screen state", state)}
             <View style={{ width: deviceWidth, alignItems: 'center', paddingTop: 30 }}>
             <View style={{ width: state.viewSize, height: state.viewSize, backgroundColor: '#e6e6e6', alignItems: "center", justifyContent:"center" }} >
                 {
