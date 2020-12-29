@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
+import AgnoButton from './AgnoButton';
 
 interface IContactRow {
     name: string,
@@ -12,9 +13,9 @@ interface IContactRow {
 }
 
 const ContactRow: FunctionComponent<IContactRow> = ({ name, navigation, companyName, isFavorite }) => (
-    <View
+    <AgnoButton
         style={styles.item}
-        onTouchEnd={() => {
+        onPress={() => {
             navigation.navigate("Details");
         }}>
         <View style={{ width: 60, height: 60, backgroundColor: '#e6e6e6', alignItems: "center", justifyContent:"center" }} >
@@ -30,7 +31,7 @@ const ContactRow: FunctionComponent<IContactRow> = ({ name, navigation, companyN
             <Text style={styles.title}>{name}</Text>
             <Text style={styles.company}>{companyName}</Text>
         </View>
-    </View>
+    </AgnoButton>
 );
 
 const styles = StyleSheet.create({
