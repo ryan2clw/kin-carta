@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { FunctionComponent, useLayoutEffect, useState } from 'react';
-import { View, Image, StyleSheet, Text } from 'react-native';
+import { View, Image, StyleSheet, Text, FlatList } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { deviceWidth } from '../../helpers/globals';
+import DetailRow from '../DetailRow';
+import Separator from '../Separator';
 
 
 interface IDetailScreen {
-    pic? : string, 
+    
     route: any
 }
 
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 31,
         fontWeight: "500",
-        marginTop: 15,
+        marginTop: 10,
         paddingTop: 9,
         paddingHorizontal: 15,
         color: "#595959"
@@ -27,29 +29,41 @@ const styles = StyleSheet.create({
         fontSize: 21,
         marginLeft: 6,
         color: '#b1b1b1',
-        paddingVertical: 5
-      }
+        paddingVertical: 5,
+        marginBottom: 20
+      },  
+      item: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+      },
+      title: {
+        fontSize: 32,
+      },
   });
-const DetailScreen: FunctionComponent<IDetailScreen>  = ({ pic, route }) => {
+  
 
-    // useLayoutEffect(() => {
-    //     if(navigation.state){
-    //     }
-    //     return () => {
-    //         // cancel async tasks, dont update unmounted components
-    //     };
-    // }, [])
+const DetailScreen: FunctionComponent<IDetailScreen>  = ({ route }) => {
 
     const [state,] = useState({
         viewSize: deviceWidth * 0.42,
         imageSize: deviceWidth * 0.3,
         ...route.params
     });
+    // @ts-ignore
+    const renderItem = ({ item }) => (
+        <DetailRow 
+          primaryKey={item.primaryKey}
+          secondaryKey={item.secondaryKey}
+          val={item.val}
+          />
+      );
 
     return (     
         <View style={styles.container}>
-            {console.log("navigation.state.params", state)}
-            <View style={{ width: deviceWidth, alignItems: 'center', padding: 30 }}>
+            {console.log("screen state", state)}
+            <View style={{ width: deviceWidth, alignItems: 'center', paddingTop: 30 }}>
             <View style={{ width: state.viewSize, height: state.viewSize, backgroundColor: '#e6e6e6', alignItems: "center", justifyContent:"center" }} >
                 {
                 state.pic ? 
@@ -68,8 +82,16 @@ const DetailScreen: FunctionComponent<IDetailScreen>  = ({ pic, route }) => {
                 { state.companyName }
             </Text>
             </View>
+            <Separator />
+            <FlatList
+                data={state.dataArray}
+                renderItem={renderItem}
+                keyExtractor={item => {
+                    return item.primaryKey + (item.secondaryKey || "")}
+                } 
+                ItemSeparatorComponent = { () => <Separator />}           
+            />
         </View>
-
     );
 }
 export default DetailScreen;

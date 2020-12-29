@@ -13,6 +13,7 @@ import { action } from 'typesafe-actions';
 import { actionTypes } from '../../store/ActionTypes';
 import { useSelector } from '../../helpers/globals';
 import ContactRow from '../ContactRow';
+import Separator from '../Separator';
 
 interface IHome {
     navigation: any
@@ -20,7 +21,8 @@ interface IHome {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1
+      flex: 1,
+      backgroundColor: '#fff'
     },
     header: {
       fontSize: 15,
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
       color: "#777777"
     }
   });
+  
 
 const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
 
@@ -65,10 +68,19 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
                         companyName={item.companyName}
                         isFavorite={item.isFavorite}
                         pic={item.largeImageURL}
+                        phone={item.phone}
+                        emailAddress={item.emailAddress}
+                        detailId={item.id}
+                        addressOne={item.address.street}
+                        addressTwo={item.address.city + ', ' + item.address.state + ' ' + item.address.zipCode + ', ' + item.address.country}
+                        birthdate={item.birthdate}
                     />}}
           renderSectionHeader={({ section: { title } }) => (
             <Text style={styles.header}>{title}</Text>
           )}
+          ItemSeparatorComponent = { () => {
+            return <Separator />
+        } }  
         />
       </View>
     );

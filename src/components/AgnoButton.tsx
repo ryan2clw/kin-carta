@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { TouchableNativeFeedback, Platform, TouchableOpacity } from "react-native";
+import React, { FunctionComponent, } from "react";
+import { TouchableOpacity } from "react-native";
 
 
 interface IAgnoButton {
@@ -9,13 +9,6 @@ interface IAgnoButton {
 
 const AgnoButton: FunctionComponent<IAgnoButton> = (props) => {
     return (
-        Platform.OS === 'android' ?
-            <TouchableNativeFeedback
-                onPress={props.onPress}
-                style={{ ...props.style }}
-                >
-                { props.children }
-            </TouchableNativeFeedback> :
             <TouchableOpacity
                 onPress={props.onPress}
                 style={{ ...props.style }}
