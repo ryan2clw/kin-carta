@@ -2,7 +2,6 @@ import * as React from 'react';
 import { FunctionComponent, useLayoutEffect } from 'react';
 import {
     StyleSheet,
-    Button,
     Text,
     View,
     SectionList
@@ -21,14 +20,14 @@ interface IHome {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      marginHorizontal: 16
+      flex: 1
     },
     header: {
       fontSize: 15,
       fontWeight: "700",
       backgroundColor: "#f4f4f4",
-      marginVertical: 9,
+      paddingVertical: 9,
+      paddingHorizontal: 15,
       color: "#777777"
     }
   });
@@ -53,18 +52,19 @@ const HomeScreen: FunctionComponent<IHome> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* {
-                console.log("RENDER!", contactData)   
-            } */}
+            {/* 
+            MARK TO DO:  CHECK FOR XML AND MAKE PIC NULL IF SO
+            */}
         <SectionList
           sections={ contactData ? contactData : [] }
           keyExtractor={( item ) => item.id }
           renderItem={({ item }) => {
             return <ContactRow 
-                    name={item.name} 
-                    navigation={navigation}  
-                    companyName={item.companyName}
-                    isFavorite={item.isFavorite}
+                        name={item.name} 
+                        navigation={navigation}  
+                        companyName={item.companyName}
+                        isFavorite={item.isFavorite}
+                        pic={item.largeImageURL}
                     />}}
           renderSectionHeader={({ section: { title } }) => (
             <Text style={styles.header}>{title}</Text>
